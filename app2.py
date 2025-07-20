@@ -3,6 +3,8 @@ import sqlite3, pandas as pd, os
 from datetime import datetime
 from twilio.rest import Client
 
+import os
+twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
 
 # login feature 
 from werkzeug.security import generate_password_hash, check_password_hash
