@@ -206,23 +206,7 @@ def update_db_for_client_tracking():
 
 
 # ---------- Twilio WhatsApp ----------
-import os
-twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN  = '892dbd9d846a76d15bfb4e8f6261167f'
-FROM_WA_NUMBER     = 'whatsapp:+17754367476'
 
-twilio_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
-def send_whatsapp_message(to_number, body):
-    try:
-        msg = twilio_client.messages.create(
-            body=body,
-            from_=FROM_WA_NUMBER,
-            to=f'whatsapp:+91{to_number}'
-        )
-        print("✅ WhatsApp SID:", msg.sid)
-    except Exception as e:
-        print("❌ WhatsApp error:", e)
 
 
 # ---------- CUSTOMER BOOK ----------
