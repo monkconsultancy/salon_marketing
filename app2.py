@@ -3,8 +3,7 @@ import sqlite3, pandas as pd, os
 from datetime import datetime
 from twilio.rest import Client
 
-import os
-twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
+
 
 # login feature 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -207,7 +206,8 @@ def update_db_for_client_tracking():
 
 
 # ---------- Twilio WhatsApp ----------
-TWILIO_ACCOUNT_SID = 'AC559023cc3d36c7a8daf72a0811dcf0da'
+import os
+twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN  = '892dbd9d846a76d15bfb4e8f6261167f'
 FROM_WA_NUMBER     = 'whatsapp:+17754367476'
 
