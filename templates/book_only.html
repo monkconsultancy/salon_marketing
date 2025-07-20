@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Appointment | Akash Men Parlor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #ffdde1, #f9c0d6, #dbe6ff, #b5f5ec);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .booking-container {
+      width: 100%;
+      max-width: 680px;
+      background-color: #ffffffdd;
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease;
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 80px;
+      border-radius: 50%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2b6cb0;
+      margin-bottom: 10px;
+    }
+
+    .token-text {
+      text-align: center;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 14px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f7fafc;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #2b6cb0;
+      background: #fff;
+      box-shadow: 0 0 0 2px #bee3f8;
+    }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #f9536b, #ffbb58);
+    }
+
+    @media (max-width: 500px) {
+      .booking-container {
+        padding: 20px;
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064174.png" alt="Akash Men Parlor Logo">
+    </div>
+    <h2>Book Appointment</h2>
+    <div class="token-text">🎫 Currently Serving Token: {{ current_token }}</div>
+
+    <form method="POST">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Mobile</label>
+      <input type="text" name="mobile" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Service</label>
+      <input type="text" name="service" required>
+
+      <label>Date</label>
+      <input type="date" name="date" required>
+
+      <label>Time</label>
+      <input type="time" name="time" required>
+
+      <label>Address</label>
+      <input type="text" name="address" required>
+
+      <label>Assign Staff</label>
+      <select name="staff_id" required>
+        {% for s in staff_list %}
+          <option value="{{ s[0] }}">{{ s[1] }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Total Amount Paid (₹)</label>
+      <input type="number" name="amount_paid" required>
+
+      <input type="hidden" name="source" value="Online">
+
+      <button type="submit">✅ Confirm Appointment</button>
+    </form>
+  </div>
+</body>
+</html>

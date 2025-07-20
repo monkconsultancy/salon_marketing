@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Appointment | Akash Men Parlor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        aside {
+            background-color: #1a202c;
+            color: white;
+            width: 260px;
+            padding: 40px 20px;
+        }
+
+        aside h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            margin: 20px 0;
+        }
+
+        aside ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        aside ul li a:hover {
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #2d3748;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<aside>
+    <h2>Akash Men Parlor</h2>
+    <ul>
+        <li><a href="/book">📅 Book Appointment</a></li>
+        <li><a href="/admin/appointments">📋 All Appointments</a></li>
+        <li><a href="/admin/clients/today">👥 Today’s Clients</a></li>
+        <li><a href="/admin/feedback">🗣️ Feedback</a></li>
+        <li><a href="/admin/staff/schedule">👨‍🔧 Staff Schedule</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <h2>✏️ Edit Appointment</h2>
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" value="{{ appointment[1] }}" required>
+
+        <label>Mobile</label>
+        <input type="text" name="mobile" value="{{ appointment[2] }}" required>
+
+        <label>Service</label>
+        <input type="text" name="service" value="{{ appointment[3] }}" required>
+
+        <label>Date</label>
+        <input type="date" name="date" value="{{ appointment[4] }}" required>
+
+        <label>Time</label>
+        <input type="time" name="time" value="{{ appointment[5] }}" required>
+
+        <label>Staff</label>
+        <select name="staff_id" required>
+            <option value="">-- Select Staff --</option>
+            {% for id, name in staff_list %}
+                <option value="{{ id }}" {% if appointment[7] == id %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Update Appointment</button>
+    </form>
+</div>
+
+</body>
+</html>

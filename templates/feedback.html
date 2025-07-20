@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback | Akash Men Parlor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            background-color: #1a202c;
+            color: white;
+            width: 260px;
+            padding: 40px 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        aside h2 {
+            font-size: 26px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            margin: 20px 0;
+        }
+
+        aside ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        aside ul li a:hover {
+            color: #ffffff;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-box h2 {
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h2 style="color: white !important;">Monk Consultancy</h2>
+        <ul>
+            <li><a href="/book">📅 Book Appointment</a></li>
+            <li><a href="/admin/appointments">📋 All Appointments</a></li>
+            <li><a href="/admin/clients/today">👥 Today’s Clients</a></li>
+            <li><a href="/admin/feedback">🗣️ Feedback</a></li>
+            <li><a href="/admin/staff/schedule">👨‍🔧 Staff Schedule</a></li>
+        </ul>
+    </aside>
+
+    <div class="main-content">
+        <div class="form-box">
+            <h2>Feedback Form</h2>
+            <form method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <select name="rating" required>
+                    <option value="">Rate Us</option>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ Good</option>
+                    <option value="3">⭐⭐⭐ Average</option>
+                    <option value="2">⭐⭐ Poor</option>
+                    <option value="1">⭐ Very Poor</option>
+                </select>
+                <textarea name="comments" placeholder="Write your comments..." rows="4" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

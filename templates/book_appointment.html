@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Appointment | Akash Men Parlor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      height: 100vh;
+    }
+
+    aside {
+      background-color: #1a202c;
+      color: white;
+      width: 240px;
+      padding: 30px 15px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    aside h2 {
+      font-size: 22px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside ul li {
+      margin: 16px 0;
+    }
+
+    aside ul li a {
+      color: #cbd5e0;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    aside ul li a:hover {
+      color: #ffffff;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #2d3748;
+      margin-bottom: 15px;
+    }
+
+    .token-display {
+      background-color: #ebf8ff;
+      border-left: 6px solid #3182ce;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      font-size: 16px;
+      font-weight: 600;
+      color: #2b6cb0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .token-display span {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a202c;
+    }
+
+    form {
+      width: 100%;
+      background-color: white;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      color: #4a5568;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e0;
+      margin-bottom: 14px;
+      font-size: 14px;
+      background-color: #f7fafc;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #3182ce;
+      box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.4);
+    }
+
+    button {
+      width: 100%;
+      background-color: #2b6cb0;
+      color: white;
+      padding: 12px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #2c5282;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        height: auto;
+      }
+
+      aside {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h2>Monk Consultancy</h2>
+    
+    <ul>
+      <li><a href="/book">📅 Book Appointment</a></li>
+      <li><a href="/admin/appointments">📋 All Appointments</a></li>
+      <li><a href="/admin/clients/today">👥 Today’s Clients</a></li>
+      <li><a href="/admin/feedback">🗣️ Feedback</a></li>
+      <li><a href="/admin/staff/schedule">👨‍🔧 Staff Schedule</a></li>
+    </ul>
+  </aside>
+
+  <div class="main-content">
+    <h1>Book Your Appointment</h1>
+
+    <div class="token-display">
+      🎫 Currently Serving Token: <span id="live_token">{{ current_token }}</span>
+    </div>
+
+    <form method="post">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Mobile</label>
+      <input type="text" name="mobile" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
+      
+      <label>Service</label>
+      <input type="text" name="service" required>
+
+      <label>Date</label>
+      <input type="date" name="date" required>
+
+      <label>Time</label>
+      <input type="time" name="time" required>
+
+      <label>Address</label>
+      <input type="text" name="address" required>
+
+      <input type="hidden" name="source" value="Online">
+
+      <label>Assign Staff</label>
+      <select name="staff_id" required>
+        {% for s in staff_list %}
+          <option value="{{ s[0] }}">{{ s[1] }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Total Amount Paid (₹)</label>
+      <input type="number" name="amount_paid" required>
+
+      <button type="submit">✅ Confirm Appointment</button>
+    </form>
+  </div>
+
+  <script>
+    setInterval(async () => {
+      const r = await fetch("/current_token");
+      const n = await r.text();
+      document.getElementById("live_token").innerText = n;
+    }, 5000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Feedback | Akash Men Parlor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        aside {
+            background-color: #1a202c;
+            color: white;
+            width: 260px;
+            padding: 40px 20px;
+        }
+
+        aside h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            margin: 20px 0;
+        }
+
+        aside ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        aside ul li a:hover {
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #2d3748;
+        }
+
+        .export-btn {
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<aside>
+    <h2>Akash Men Parlor</h2>
+    <ul>
+        <li><a href="/book">📅 Book Appointment</a></li>
+        <li><a href="/admin/appointments">📋 All Appointments</a></li>
+        <li><a href="/admin/clients/today">👥 Today’s Clients</a></li>
+        <li><a href="/admin/feedback">🗣️ Feedback</a></li>
+        <li><a href="/admin/staff/schedule">👨‍🔧 Staff Schedule</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <h2>📋 Customer Feedback</h2>
+
+    <a href="/admin/feedback/export" class="export-btn">⬇️ Export to Excel</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Comments</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fb in feedbacks %}
+            <tr>
+                <td>{{ fb[1] }}</td>
+                <td>{{ fb[2] }}</td>
+                <td>{{ fb[3] }}</td>
+                <td>{{ fb[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

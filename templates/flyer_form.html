@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Festival Flyer Generator</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      background: #6a11cb;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>🎉 Generate Festival Flyer</h2>
+    <form method="POST">
+      <input name="salon_name" placeholder="Your Salon Name" required>
+      <input name="website" placeholder="Your Website URL (optional)">
+      <input name="wishing_text" placeholder="Wishing You a Happy Diwali!" required>
+      <button type="submit">Generate Flyer</button>
+    </form>
+  </div>
+</body>
+</html>

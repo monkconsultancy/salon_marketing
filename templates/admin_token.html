@@ -1,0 +1,8 @@
+{% extends "admin_sidebar_base.html" %}
+{% block content %}
+<h2>Current Serving Number: {{ current }}</h2>
+<form method="post" style="margin-top:20px">
+  <input type="number" name="new_val" value="{{ current+1 }}">
+  <button type="submit">Next</button>
+</form>
+{% endblock %}

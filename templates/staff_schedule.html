@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Schedule | Akash Men Parlor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            background-color: #1a202c;
+            color: white;
+            width: 260px;
+            padding: 40px 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        aside h2 {
+            font-size: 26px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            margin: 20px 0;
+        }
+
+        aside ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        aside ul li a:hover {
+            color: #ffffff;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-x: auto;
+        }
+
+        h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3182ce;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+
+        select, button {
+            padding: 6px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<aside>
+    <h2 style="color: white !important;">Monk Consultancy</h2>
+    <ul>
+        <li><a href="/book">📅 Book Appointment</a></li>
+        <li><a href="/admin/appointments">📋 All Appointments</a></li>
+        <li><a href="/admin/clients/today">👥 Today’s Clients</a></li>
+        <li><a href="/admin/feedback">🗣️ Feedback</a></li>
+        <li><a href="/admin/staff/schedule">👨‍🔧 Staff Schedule</a></li>
+    </ul>
+</aside>
+
+<div class="main-content">
+    <h2>📅 Staff Appointments Schedule</h2>
+    <table>
+        <tr>
+            <th>Staff</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Service</th>
+            <th>Customer</th>
+            <th>Reassign</th>
+        </tr>
+        {% for row in schedule %}
+        <tr>
+            <form method="POST" action="/admin/staff/update/{{ row[5] }}">
+                <td>
+                    <select name="staff_id">
+                        {% for sid, sname in all_staff %}
+                            <option value="{{ sid }}" {% if sid == row[6] %}selected{% endif %}>{{ sname }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td><button type="submit">Reassign</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
